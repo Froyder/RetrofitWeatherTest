@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">RetrofitFullTest</string>
+    <string name="putCityName">Put the name of your city here</string>
+    <string name="search">Search</string>
+    <string name="weatherData">Weather</string>
+    <string name="loadingError">Can\'t load data!</string>
+    <string name="inputReminder">Put the name of the city first!</string>
+    <string name="whereAmI">Where am I?</string>
+    <string name="tryAgainLater">Getting your location - try again a bit later!</string>
+    <string name="gpsRequest">GPS Request</string>
+    <string name="gpsMessage">This application needs access to GPS to get your current location</string>
+    <string name="gpsAgree">Agree!</string>
+    <string name="gpsDeny">Deny</string>
 </resources>

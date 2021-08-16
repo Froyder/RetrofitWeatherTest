@@ -3,11 +3,12 @@
     package="com.example.retrofitfulltest">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_alt"
-        android:label="WeatherAPI"
+        android:icon="@drawable/ic_baseline_wb_sunny_24"
+        android:label="WeatherApp"
         android:supportsRtl="true"
         android:theme="@style/Theme.RetrofitFullTest">
         <activity

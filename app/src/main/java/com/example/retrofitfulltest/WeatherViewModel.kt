@@ -12,12 +12,12 @@ class WeatherViewModel(
 ) :
     ViewModel() {
 
-    fun getData(city : String = "Moscow"): LiveData<WeatherData> {
+    fun getData(city : String? = "Omsk"): LiveData<WeatherData> {
         sendServerRequest(city)
         return liveDataForViewToObserve
     }
 
-    private fun sendServerRequest(city :String) {
+    private fun sendServerRequest(city :String?) {
         liveDataForViewToObserve.value = WeatherData.Loading(null)
         val apiKey: String = BuildConfig.WEATHER_API_KEY
         if (apiKey.isBlank()) {

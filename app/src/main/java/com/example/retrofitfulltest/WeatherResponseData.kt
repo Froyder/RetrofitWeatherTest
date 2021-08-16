@@ -26,6 +26,7 @@ data class Sys(
     @SerializedName("sunset") val sunset: Int
 )
 
+
 data class Coord(
     @SerializedName("lon") val lon: Double,
     @SerializedName("lat") val lat: Double
@@ -33,6 +34,7 @@ data class Coord(
 
 data class TemperatureData(
     @SerializedName("temp") val temp: Double,
+    @SerializedName("feels_like") val tempFeelsLike: Double,
     @SerializedName("pressure") val pressure: Int,
     @SerializedName("humidity") val humidity: Int,
     @SerializedName("temp_min") val tempMin: Double,
