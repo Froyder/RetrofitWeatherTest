@@ -2,104 +2,163 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weatherContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FCA2F927">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/cityNameET"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:hint="@string/putCityName"
-        android:inputType="text"
-        android:maxLines="1"
-        android:textAlignment="center"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="25dp"
+        android:layout_marginTop="70dp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.AppCompatEditText>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/cityNameET"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:layout_marginTop="15dp"
+            android:hint="@string/putCityName"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textAlignment="center">
+        </androidx.appcompat.widget.AppCompatEditText>
+    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:backgroundTint="@color/purple_700"
+        android:elevation="10dp"
+        android:backgroundTint="#359104"
         android:text="@string/search"
-        android:textColor="@color/white"
+        android:textColor="#E7FFE0"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/currentCityButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cityNameET"></androidx.appcompat.widget.AppCompatButton>
+        app:layout_constraintTop_toBottomOf="@id/cardViewSearch">
+    </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/currentCityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:backgroundTint="@color/purple_700"
+        android:elevation="10dp"
+        android:backgroundTint="#359104"
         android:text="@string/whereAmI"
-        android:textColor="@color/white"
+        android:textColor="#E7FFE0"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/searchButton"
-        app:layout_constraintTop_toBottomOf="@id/cityNameET"></androidx.appcompat.widget.AppCompatButton>
+        app:layout_constraintTop_toBottomOf="@id/cardViewSearch">
+    </androidx.appcompat.widget.AppCompatButton>
 
-    <LinearLayout
-        android:id="@+id/weatherDataLinear"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewLinear"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:orientation="vertical"
+        android:elevation="10dp"
+        android:visibility="visible"
+        app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchButton">
+        app:layout_constraintTop_toBottomOf="@+id/searchButton">
 
-        <TextView
-            android:id="@+id/cityTV"
-            style="@style/TextViewStyle"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/weatherDataLinear"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/weatherData"
-            android:textAlignment="center"></TextView>
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tempTV"
-            style="@style/TextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/weatherData"
-            android:textAlignment="center"></TextView>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/weatherIV"
+                style="@style/TextViewStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:hint="@string/weatherData"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_wb_sunny_24"></androidx.appcompat.widget.AppCompatImageView>
 
-        <TextView
-            android:id="@+id/weatherTV"
-            style="@style/TextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/weatherData"
-            android:textAlignment="center"></TextView>
+            <TextView
+                android:id="@+id/cityTV"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="18sp"
+                android:hint="@string/weatherData"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@+id/tempTV"
+                app:layout_constraintStart_toEndOf="@+id/weatherIV"
+                app:layout_constraintTop_toTopOf="parent">
+            </TextView>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/detailsTV"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/detailsTV"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tempTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cityTV">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tempTV"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/weatherData"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <FrameLayout
         android:id="@+id/loader"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:visibility="gone"
+        android:backgroundTint="#FCA2F927"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchButton"
+        app:layout_constraintTop_toTopOf="@+id/cardViewSearch"
         tools:visibility="visible">
 
         <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/purple_700" />
+            android:indeterminateDrawable="@drawable/spinner_icon"
+            android:indeterminate="true"  />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

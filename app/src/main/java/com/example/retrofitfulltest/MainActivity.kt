@@ -1,18 +1,12 @@
 package com.example.retrofitfulltest
 
-import android.Manifest
-import android.content.ContentValues.TAG
-import android.content.pm.PackageManager
 import android.location.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
-import androidx.core.app.ActivityCompat
-import android.util.Log
+import android.view.Menu
 
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import java.io.IOException
+import kotlinx.android.synthetic.main.weather_fragment.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +15,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        fab.setOnClickListener(){
+
+        }
+
+        setSupportActionBar(bottom_app_bar)
         supportFragmentManager.beginTransaction().replace(R.id.container, WeatherFragment()).commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_app_bar, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

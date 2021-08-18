@@ -12,6 +12,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,8 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import coil.api.load
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.weather_fragment.*
 
 private val REQUEST_CODE = 123
@@ -27,8 +30,7 @@ private var lastTownRequest = "Omsk"
 
 class WeatherFragment : Fragment() {
 
-    //Ленивая инициализация модели
-    private val viewModel: WeatherViewModel by lazy {
+    private val weatherViewModel: WeatherViewModel by lazy {
         ViewModelProviders.of(this).get(WeatherViewModel::class.java)
     }
 
@@ -46,8 +48,7 @@ class WeatherFragment : Fragment() {
             GPSPermission = sharedPref.getBoolean("GPSPermission", false)
             lastTownRequest = sharedPref.getString("LastRequest", lastTownRequest).toString()
         }
-
-        viewModel.getData(lastTownRequest).observe(viewLifecycleOwner, Observer<WeatherData> { renderData(it) })
+        weatherViewModel.getData(lastTownRequest).observe(viewLifecycleOwner, Observer<WeatherData> { renderData(it) })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,18 +58,25 @@ class WeatherFragment : Fragment() {
 
         searchButton.setOnClickListener() {
             if (cityNameET.text.toString() != ""){
-                viewModel.getData(cityNameET.text.toString().trim())
-            } else Toast.makeText(context, R.string.inputReminder, Toast.LENGTH_SHORT).show()
+                weatherViewModel.getData(cityNameET.text.toString().trim())
+                hideKeyboard ()
+            } else Snackbar.make(weatherContainer, R.string.inputReminder, Snackbar.LENGTH_SHORT).show()
         }
 
         currentCityButton.setOnClickListener() {
             if (!GPSPermission) {
                 showRequestDialog()
             } else {
-                if (currentCity != "") viewModel.getData(currentCity)
+                if (currentCity != "") weatherViewModel.getData(currentCity)
                 else Toast.makeText(context, R.string.tryAgainLater, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun hideKeyboard () {
+        val keyboard =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        keyboard.hideSoftInputFromWindow(cityNameET.getWindowToken(), 0)
     }
 
     private fun renderData(data: WeatherData) {
@@ -76,12 +84,12 @@ class WeatherFragment : Fragment() {
             is WeatherData.Success -> {
                 setWeatherData(data)
                 loader.visibility = View.GONE
-                weatherDataLinear.visibility = View.VISIBLE
+                cardViewLinear.visibility = View.VISIBLE
             }
 
             is WeatherData.Loading -> {
                 loader.visibility = View.VISIBLE
-                weatherDataLinear.visibility = View.GONE
+                cardViewLinear.visibility = View.GONE
             }
             is WeatherData.Error -> {
                 cityTV.setText(R.string.loadingError)
@@ -90,21 +98,38 @@ class WeatherFragment : Fragment() {
     }
 
     private fun setWeatherData(data: WeatherData.Success) {
-        TransitionManager.beginDelayedTransition(weatherDataLinear, Slide(Gravity.BOTTOM))
+        TransitionManager.beginDelayedTransition(cardViewLinear, Slide(Gravity.BOTTOM))
         val weatherData = data.serverResponseData
         val name = weatherData.name
         val country = weatherData.sys.country
         val temp = weatherData.main.temp
         val tempFormatted = "%.1f".format(temp)
-        val tempFeelsLike = weatherData.main.tempFeelsLike
-        val tempFLFormated = "%.1f".format(tempFeelsLike)
-        val weatherState = weatherData.weather[0].main
-        cityTV.text = "City: $name, $country"
-        tempTV.text = "Temperature: $tempFormatted C° (feels like $tempFLFormated C°)"
-        weatherTV.text = "Weather: $weatherState"
 
+        cityTV.text = "$name, $country"
+        tempTV.text = "$tempFormatted C°"
+
+        when (weatherData.weather[0].main) {
+            "Clouds" -> weatherIV.setImageResource(R.drawable.ic_baseline_cloud_24)
+            "Clear" -> weatherIV.setImageResource(R.drawable.ic_baseline_wb_sunny_24)
+            "Rain" -> weatherIV.setImageResource(R.drawable.ic_baseline_water_drop_24)
+            "Drizzle" -> weatherIV.setImageResource(R.drawable.ic_baseline_water_drop_24)
+            "Thunderstorm" -> weatherIV.setImageResource(R.drawable.ic_baseline_water_drop_24)
+            "Snow" -> weatherIV.setImageResource(R.drawable.ic_baseline_snow)
+            else -> weatherIV.setImageResource(R.drawable.ic_baseline_dehaze_24)
+        }
+
+        //val localTime = TimeZoneManager.getLocalTime(weatherData.coord.lat, weatherData.coord.lon)
+
+        saveLastRequest(name)
+
+        weatherDataLinear.setOnClickListener(){
+            MyBottomSheetDialogFragment(weatherData).show(parentFragmentManager, MyBottomSheetDialogFragment.TAG)
+        }
+    }
+
+    private fun saveLastRequest (city :String) {
         val sharedPref = activity?.getSharedPreferences("SETTINGS", Context.MODE_PRIVATE)
-        sharedPref?.edit()?.putString("LastRequest", name)?.apply()
+        sharedPref?.edit()?.putString("LastRequest", city)?.apply()
     }
 
     private fun setLocationManager() {

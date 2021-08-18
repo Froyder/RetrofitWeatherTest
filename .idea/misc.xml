@@ -4,13 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable/greenprogress.xml" value="0.2703125" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.2703125" />
         <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable/ic_baseline_umbrella_24.xml" value="0.2703125" />
         <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable/ic_baseline_wb_sunny_24.xml" value="0.2703125" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable/ic_favourite_menu.xml" value="0.2703125" />
         <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable/spinner_icon.xml" value="0.2703125" />
         <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/drawable/umbrella.xml" value="0.2703125" />
         <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/layout/main_fragment.xml" value="0.4" />
-        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/layout/weather_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/layout/spinner_ring.xml" value="0.25416666666666665" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/layout/weather_fragment.xml" value="0.264" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/layout/weather_main_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/CodingWithFun/Kotlin/RetrofitFullTest/app/src/main/res/menu/menu_app_bar.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

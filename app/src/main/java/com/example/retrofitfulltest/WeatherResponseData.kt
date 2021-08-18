@@ -11,6 +11,7 @@ data class WeatherResponseData(
     @SerializedName("wind") val wind: Wind,
     @SerializedName("clouds") val clouds: Clouds,
     @SerializedName("dt") val dt: Int,
+    @SerializedName("timezone") val timezone: Int,
     @SerializedName("sys") val sys: Sys,
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,

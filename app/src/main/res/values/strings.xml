@@ -11,4 +11,9 @@
     <string name="gpsMessage">This application needs access to GPS to get your current location</string>
     <string name="gpsAgree">Agree!</string>
     <string name="gpsDeny">Deny</string>
+    <string name="timeData">Local time</string>
+    <string name="favorite">Favorite</string>
+    <string name="history">History</string>
+    <string name="details">Details</string>
+    <string name="detailsTV">Tap to see more details</string>
 </resources>

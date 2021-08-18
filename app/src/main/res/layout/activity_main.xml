@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +10,28 @@
   <FrameLayout
       android:id="@+id/container"
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      android:layout_marginBottom="?actionBarSize">
   </FrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <com.google.android.material.bottomappbar.BottomAppBar
+      android:id="@+id/bottom_app_bar"
+      app:title="@string/app_name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      app:fabAlignmentMode="center"
+      app:hideOnScroll="true"
+      app:layout_scrollFlags="scroll|enterAlways" />
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:backgroundTint="#2B7007"
+      app:layout_anchor="@id/bottom_app_bar"
+      app:srcCompat="@drawable/ic_baseline_wb_sunny_24"
+      app:tint="#FFFFFF"
+      android:contentDescription="TODO" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
