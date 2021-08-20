@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
   <FrameLayout
       android:id="@+id/container"
@@ -14,24 +14,15 @@
       android:layout_marginBottom="?actionBarSize">
   </FrameLayout>
 
-  <com.google.android.material.bottomappbar.BottomAppBar
-      android:id="@+id/bottom_app_bar"
-      app:title="@string/app_name"
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/bottom_navigation_view"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      app:labelVisibilityMode="selected"
       android:layout_gravity="bottom"
-      app:fabAlignmentMode="center"
-      app:hideOnScroll="true"
-      app:layout_scrollFlags="scroll|enterAlways" />
-
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/fab"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:backgroundTint="#2B7007"
-      app:layout_anchor="@id/bottom_app_bar"
-      app:srcCompat="@drawable/ic_baseline_wb_sunny_24"
-      app:tint="#FFFFFF"
-      android:contentDescription="TODO" />
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:menu="@menu/menu_app_bar"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

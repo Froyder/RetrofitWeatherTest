@@ -16,4 +16,6 @@
     <string name="history">History</string>
     <string name="details">Details</string>
     <string name="detailsTV">Tap to see more details</string>
+    <string name="weather">Weather</string>
+    <string name="addToFavorites">City was added to Favorites</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.retrofitfulltest
+package com.example.retrofitfulltest.view
 
 import android.Manifest
 import android.content.Context
@@ -20,15 +20,21 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import coil.api.load
-import com.google.android.material.snackbar.Snackbar
+import com.example.retrofitfulltest.MyLocationListener
+import com.example.retrofitfulltest.R
+import com.example.retrofitfulltest.WeatherData
+import com.example.retrofitfulltest.currentCity
+import com.example.retrofitfulltest.dataBase.City
+import com.example.retrofitfulltest.dataBase.FavoriteDataBase
+import com.example.retrofitfulltest.view.MyBottomSheetDialogFragment
+import com.example.retrofitfulltest.viewModel.WeatherViewModel
 import kotlinx.android.synthetic.main.weather_fragment.*
 
 private val REQUEST_CODE = 123
 private var GPSPermission = false
 private var lastTownRequest = "Omsk"
 
-class WeatherFragment : Fragment() {
+class WeatherFragment(private val dataBase: FavoriteDataBase? = null) : Fragment() {
 
     private val weatherViewModel: WeatherViewModel by lazy {
         ViewModelProviders.of(this).get(WeatherViewModel::class.java)
@@ -60,7 +66,7 @@ class WeatherFragment : Fragment() {
             if (cityNameET.text.toString() != ""){
                 weatherViewModel.getData(cityNameET.text.toString().trim())
                 hideKeyboard ()
-            } else Snackbar.make(weatherContainer, R.string.inputReminder, Snackbar.LENGTH_SHORT).show()
+            } else showReminderDialog()
         }
 
         currentCityButton.setOnClickListener() {
@@ -125,6 +131,16 @@ class WeatherFragment : Fragment() {
         weatherDataLinear.setOnClickListener(){
             MyBottomSheetDialogFragment(weatherData).show(parentFragmentManager, MyBottomSheetDialogFragment.TAG)
         }
+
+        weatherDataLinear.setOnLongClickListener(){
+            Thread {
+                if (dataBase?.cityDAO()?.findByName(name) == null){
+                    dataBase?.cityDAO()?.addCity(City(0, name))
+                }
+            }.start()
+            Toast.makeText(context, "$name was added to Favorites", Toast.LENGTH_SHORT).show()
+            true
+        }
     }
 
     private fun saveLastRequest (city :String) {
@@ -185,6 +201,16 @@ class WeatherFragment : Fragment() {
                 } else showRequestDialog()
             }
         }
+    }
+
+    private fun showReminderDialog(){
+        android.app.AlertDialog.Builder(context)
+            .setMessage(R.string.inputReminder)
+            .setPositiveButton("Got it!") { dialog, button ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 
     private fun showRequestDialog() {

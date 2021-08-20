@@ -1,4 +1,4 @@
-package com.example.retrofitfulltest
+package com.example.retrofitfulltest.view
 
 import android.app.AlertDialog
 import android.app.Dialog

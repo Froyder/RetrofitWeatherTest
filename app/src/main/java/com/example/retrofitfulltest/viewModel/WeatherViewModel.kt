@@ -1,8 +1,12 @@
-package com.example.retrofitfulltest
+package com.example.retrofitfulltest.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.retrofitfulltest.BuildConfig
+import com.example.retrofitfulltest.WeatherData
+import com.example.retrofitfulltest.WeatherResponseData
+import com.example.retrofitfulltest.WeatherRetrofitImplementation
 import retrofit2.Call
 import retrofit2.Response
 

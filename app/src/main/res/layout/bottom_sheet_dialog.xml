@@ -44,7 +44,25 @@
         </TextView>
 
         <TextView
+            android:id="@+id/tempTVminMax"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/weatherData"
+            android:textAlignment="center">
+        </TextView>
+
+        <TextView
             android:id="@+id/weatherTV"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/weatherData"
+            android:textAlignment="center">
+        </TextView>
+
+        <TextView
+            android:id="@+id/windTV"
             style="@style/TextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="50dp"

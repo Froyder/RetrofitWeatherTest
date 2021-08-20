@@ -39,8 +39,8 @@ class MyLocationListener(mainActivity: AppCompatActivity) : LocationListener {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        val s = ("Your current city is: $cityName")
-        Toast.makeText(activity, s, Toast.LENGTH_SHORT).show()
+//        val s = ("Your current city is: $cityName")
+//        Toast.makeText(activity, s, Toast.LENGTH_SHORT).show()
         currentCity = cityName
     }
 }
